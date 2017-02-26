@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "extends": "airbnb",
+  "extends": ["standard", "standard-react"],
   "env": {
     "browser": true,
     "mocha": true,
@@ -9,18 +9,25 @@
   "rules": {
     "arrow-parens": ["off"],
     "consistent-return": "off",
-    "comma-dangle": "off",
+
+    "comma-dangle": [2, "always-multiline"],
+
     "generator-star-spacing": "off",
-    "import/no-unresolved": ["error", { "ignore": ["electron"] }],
     "import/no-extraneous-dependencies": "off",
     "no-use-before-define": "off",
+
     "promise/param-names": 2,
     "promise/always-return": 2,
     "promise/catch-or-return": 2,
     "promise/no-native": 0,
-    "react/jsx-no-bind": "off",
+
+    "react/jsx-uses-react": 1,
+    "react/jsx-uses-vars": 1,
+    "react/jsx-no-bind": 1,
+    "react/prop-types": 1,
     "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
     "react/prefer-stateless-function": "off",
+
     "flowtype-errors/show-errors": 2
   },
   "plugins": [

@@ -1,0 +1,34 @@
+.header {
+  background: #FF5745;
+  padding: 16px 24px;
+}
+
+.heading {
+  color: #fff;
+  font-weight: normal;
+  margin-bottom: 16px;
+}
+
+.form {
+
+}
+
+.input:global(.ant-input) {
+  background: rgba(0,0,0,.25);
+  color: #fff;
+  border: none;
+
+  &:focus {
+    border: none;
+    box-shadow: 0 0 2px 1px #9c0f00;
+    background: rgba(0,0,0,.20);
+  }
+}
+
+.task {
+  padding: 16px 24px;
+
+  &:nth-child(even) {
+    background: #f3f3f3;
+  }
+}

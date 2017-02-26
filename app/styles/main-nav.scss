@@ -1,0 +1,22 @@
+.menu:global(.ant-menu) {
+  width: 100%;
+}
+
+.menuItem {
+  :global(.ant-menu-dark.ant-menu-vertical) &:global(.ant-menu-item) {
+    height: 80px;
+    text-align: center;
+    padding: 0;
+    background-color: #303030;
+
+    :global(.anticon) {
+      font-size: 40px;
+      line-height: 80px;
+      margin-right: 0;
+    }
+  }
+
+  :global(.ant-menu:not(.ant-menu-horizontal)) &:global(.ant-menu-item-selected) {
+    background: rgba(0,0,0,.3);
+  }
+}

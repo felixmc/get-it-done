@@ -1,11 +1,10 @@
 // @flow
-import { combineReducers } from 'redux';
-import { routerReducer as routing } from 'react-router-redux';
-import counter from './counter';
+import { combineReducers } from 'redux'
+import { routerReducer as routing } from 'react-router-redux'
 
-const rootReducer = combineReducers({
-  counter,
-  routing
-});
+import inbox from './inbox'
 
-export default rootReducer;
+export default combineReducers({
+  inbox,
+  routing,
+})

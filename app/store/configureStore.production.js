@@ -1,14 +1,24 @@
 // @flow
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { hashHistory } from 'react-router';
-import { routerMiddleware } from 'react-router-redux';
-import rootReducer from '../reducers';
+import { createStore, applyMiddleware } from 'redux'
+import { createEpicMiddleware } from 'redux-observable'
+import { hashHistory } from 'react-router'
+import { routerMiddleware } from 'react-router-redux'
 
-const router = routerMiddleware(hashHistory);
+import rootReducer from '../reducers'
+import { epics } from '../actions'
 
-const enhancer = applyMiddleware(thunk, router);
+const epicMiddleware = createEpicMiddleware(epicss)
 
-export default function configureStore(initialState: Object | void) {
-  return createStore(rootReducer, initialState, enhancer);
+const router = routerMiddleware(hashHistory)
+
+const enhancer = composeEnhancers(
+  applyMiddleware(epicMiddleware, router)
+)
+
+export default function configureStore (initialState: Object | void) {
+  return createStore(
+    rootReducer,
+    initialState,
+    enhancer,
+  )
 }

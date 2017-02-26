@@ -4,13 +4,13 @@
  * https://webpack.github.io/docs/hot-module-replacement-with-webpack.html
  */
 
-import webpack from 'webpack';
-import validate from 'webpack-validator';
-import merge from 'webpack-merge';
-import formatter from 'eslint-formatter-pretty';
-import baseConfig from './webpack.config.base';
+import webpack from 'webpack'
+import validate from 'webpack-validator'
+import merge from 'webpack-merge'
+import formatter from 'eslint-formatter-pretty'
+import baseConfig from './webpack.config.base'
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000
 
 export default validate(merge(baseConfig, {
   debug: true,
@@ -20,11 +20,11 @@ export default validate(merge(baseConfig, {
   entry: [
     `webpack-hot-middleware/client?path=http://localhost:${port}/__webpack_hmr`,
     'babel-polyfill',
-    './app/index'
+    './app/index',
   ],
 
   output: {
-    publicPath: `http://localhost:${port}/dist/`
+    publicPath: `http://localhost:${port}/dist/`,
   },
 
   module: {
@@ -36,20 +36,19 @@ export default validate(merge(baseConfig, {
     //   }
     // ],
     loaders: [
+
+      // antd + global css
       {
-        test: /\.global\.css$/,
-        loaders: [
-          'style-loader',
-          'css-loader?sourceMap'
-        ]
+        test: /\.css$/,
+        loader: 'style!css',
+        exclude: /app/,
       },
 
+      // css modules
       {
-        test: /^((?!\.global).)*\.css$/,
-        loaders: [
-          'style-loader',
-          'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
-        ]
+        test: /\.s?css$/,
+        loader: 'style!css?modules=true&localIdentName=[name]__[local]___[hash:base64:5]!sass',
+        exclude: /node_modules/,
       },
 
       { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff' },
@@ -57,11 +56,11 @@ export default validate(merge(baseConfig, {
       { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream' },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file' },
       { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' },
-    ]
+    ],
   },
 
   eslint: {
-    formatter
+    formatter,
   },
 
   plugins: [
@@ -74,10 +73,10 @@ export default validate(merge(baseConfig, {
 
     // NODE_ENV should be production so that modules do not perform certain development checks
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
-    })
+      'process.env.NODE_ENV': JSON.stringify('development'),
+    }),
   ],
 
   // https://github.com/chentsulin/webpack-target-electron-renderer#how-this-module-works
-  target: 'electron-renderer'
-}));
+  target: 'electron-renderer',
+}))

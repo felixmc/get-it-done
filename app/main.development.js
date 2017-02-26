@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu, shell } from 'electron';
+import { app, BrowserWindow, Menu, shell } from 'electron'
 
 let menu;
 let template;
@@ -39,9 +39,10 @@ const installExtensions = async () => {
 };
 
 app.on('ready', async () => {
-  await installExtensions();
+  await installExtensions()
 
   mainWindow = new BrowserWindow({
+    // titleBarStyle: 'hidden-inset',
     show: false,
     width: 1024,
     height: 728
